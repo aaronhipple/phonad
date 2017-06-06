@@ -43,10 +43,7 @@ abstract class Monad
      * @param callable $transform
      * @return Monad A transformed instance of the monad.
      */
-    public function bind(callable $transform)
-    {
-        return static::unit(Utilities::maybeBind($transform)($this->value));
-    }
+    abstract public function bind(callable $transform);
 
     /**
      * Retrieve the encapsulated value from the monad.
@@ -55,6 +52,6 @@ abstract class Monad
      */
     public function unpack()
     {
-        return Utilities::maybeUnpack()($this->value);
+        return $this->value;
     }
 }

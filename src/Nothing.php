@@ -1,0 +1,36 @@
+<?php namespace aaronhipple\phonad;
+
+/**
+ * Nothing represents an empty value in the Option monad.
+ */
+class Nothing extends Option
+{
+    protected $value = null;
+
+    /**
+     * Represent Nothing::unit as a const containing a callable such
+     * that it may be easily passed as a callback.
+     */
+    public const unit = 'aaronhipple\phonad\Nothing::unit';
+
+
+    /**
+     * Nothing constructor.
+     *
+     * Does nothing.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Apply a transformation to the monad.
+     *
+     * @param callable $transform
+     * @return Nothing
+     */
+    public function bind(callable $transform)
+    {
+        return $this;
+    }
+}

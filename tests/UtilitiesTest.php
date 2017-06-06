@@ -1,10 +1,17 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use aaronhipple\phonad\Option;
+use aaronhipple\phonad\Nothing;
 use aaronhipple\phonad\Utilities;
 
 class UtilitiesTest extends TestCase
 {
+    public function testComposeNoFunctionsThrowsError()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Utilities::compose();
+    }
+
     public function testComposeSingleFunction()
     {
         $transform = Utilities::compose('str_rot13');
@@ -15,24 +22,6 @@ class UtilitiesTest extends TestCase
     {
         $transform = Utilities::compose('str_rot13', 'str_rot13');
         $this->assertEquals('value', $transform('value'));
-    }
-
-    public function testMaybeBindWorksOnMonad()
-    {
-        $value = new Option(3);
-        $result = Utilities::maybeBind(function ($x) {
-            return $x * 2;
-        })($value);
-        $this->assertEquals(6, $result->unpack());
-    }
-
-    public function testMaybeBindWorksOnNonMonad()
-    {
-        $value = 3;
-        $result = Utilities::maybeBind(function ($x) {
-            return $x * 2;
-        })($value);
-        $this->assertEquals(6, $result);
     }
 
     public function testMaybeUnpackWorksOnMonad()

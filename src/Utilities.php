@@ -28,23 +28,6 @@ class Utilities
     }
 
     /**
-     * maybeBind returns a wrapped callback that may either
-     * run directly on a value or bind to a Monadic value.
-     *
-     * @param callable $transform
-     * @return callable
-     */
-    public static function maybeBind(callable $transform)
-    {
-        return function ($value) use ($transform) {
-            if ($value instanceof Monad) {
-                return $value->bind($transform);
-            }
-            return $transform($value);
-        };
-    }
-
-    /**
      * maybeUnpack returns a function that either unpacks
      * a Monadic value or returns the raw value.
      *

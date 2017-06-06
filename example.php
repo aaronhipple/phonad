@@ -1,7 +1,9 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use aaronhipple\phonad;
+use aaronhipple\phonad\ListMonad as L;
+use aaronhipple\phonad\Nothing;
+use aaronhipple\phonad\Option;
 
 $books = [
   [
@@ -36,19 +38,29 @@ $books = [
   ],
 ];
 
-function valueAt($key)
-{
-    return function ($array) use ($key) {
-        return isset($array[$key]) ? $array[$key] : null;
-    };
-}
-
-$bookMonad = phonad\ListMonad::unit($books);
+$bookMonad = new L($books);
 
 $names = $bookMonad
-  ->bind(valueAt('author'))
-  ->bind(valueAt('name'))
-  ->bind(valueAt('middle'))
+  ->bind(L::at('author'))
+  ->bind(L::at('name'))
+  ->bind(L::at('middle'))
   ->unpack();
 
 var_dump($names);
+
+
+
+$replicate = function ($times) {
+    return function ($value) use ($times) {
+        return new L(array_fill(0, $times, $value));
+    };
+};
+
+$list = new L(['bunny']);
+
+$result = $list
+  ->bind($replicate(3))
+  ->bind($replicate(3))
+  ->unpack();
+
+var_dump($result);
