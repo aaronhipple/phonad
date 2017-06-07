@@ -11,7 +11,7 @@ class Nothing extends Option
      * Represent Nothing::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public const unit = 'aaronhipple\phonad\Nothing::unit';
+    const unit = 'aaronhipple\phonad\Nothing::unit';
 
 
     /**

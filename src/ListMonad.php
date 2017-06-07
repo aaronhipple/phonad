@@ -24,7 +24,7 @@ class ListMonad extends Monad
      * Represent ListMonad::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public const unit = 'aaronhipple\phonad\ListMonad::unit';
+    const unit = 'aaronhipple\phonad\ListMonad::unit';
 
     /**
      * ListMonad constructor.

@@ -27,14 +27,14 @@ class UtilitiesTest extends TestCase
     public function testMaybeUnpackWorksOnMonad()
     {
         $value = new Option(3);
-        $result = Utilities::maybeUnpack()($value);
+        $result = call_user_func(Utilities::maybeUnpack(), $value);
         $this->assertEquals(3, $result);
     }
 
     public function testMaybeUnpackWorksOnNonMonad()
     {
         $value = 3;
-        $result = Utilities::maybeUnpack()($value);
+        $result = call_user_func(Utilities::maybeUnpack(), $value);
         $this->assertEquals(3, $result);
     }
 }
