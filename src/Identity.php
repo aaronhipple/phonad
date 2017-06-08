@@ -23,7 +23,7 @@ class Identity extends Monad
      * Represent Identity::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    const unit = 'aaronhipple\phonad\Identity::unit';
+    public static $unit = 'aaronhipple\phonad\Identity::unit';
 
     /**
      * Apply a transformation to the monad.
