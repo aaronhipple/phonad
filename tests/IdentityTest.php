@@ -4,6 +4,9 @@ use aaronhipple\phonad\Identity;
 
 class IdentityTest extends TestCase
 {
+    /**
+     * @group monad
+     */
     public function testOperationsChain()
     {
         $value = Identity::unit(3);
@@ -20,6 +23,9 @@ class IdentityTest extends TestCase
         $this->assertEquals(9, $result);
     }
 
+    /**
+     * @group monad
+     */
     public function testDoesntWrapSelf()
     {
         $value = Identity::unit(3);

@@ -29,12 +29,12 @@ abstract class Monad
      *
      * @return Monad An instance of monad.
      */
-    public static function unit($value)
+    public static function unit(...$value)
     {
-        if ($value instanceof static) {
-            return $value;
+        if (count($value) === 1 && current($value) instanceof Monad) {
+          return current($value);
         }
-        return new static($value);
+        return new static(...$value);
     }
 
     /**

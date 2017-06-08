@@ -20,6 +20,8 @@ use InvalidArgumentException;
  */
 class ListMonad extends Monad
 {
+    use Traits\Traversable;
+
     /**
      * Represent ListMonad::unit as a const containing a callable such
      * that it may be easily passed as a callback.
@@ -31,12 +33,9 @@ class ListMonad extends Monad
      *
      * @param $value mixed The value to be contained. If not an array, an array will be constructed.
      */
-    public function __construct($value)
+    public function __construct(...$items)
     {
-        if (!(is_array($value) || $value instanceof Traversable)) {
-            throw new InvalidArgumentException('List must be constructed using an array or Traversable object');
-        }
-        $this->value = $value;
+        $this->value = $items;
     }
 
     /**
@@ -47,7 +46,8 @@ class ListMonad extends Monad
      */
     public function bind(callable $transform)
     {
-        return static::unit(self::concat(array_map($transform, $this->value)));
+        $results = self::concat(array_map($transform, $this->value));
+        return new static(...$results);
     }
 
     /**
@@ -62,30 +62,9 @@ class ListMonad extends Monad
     {
         return array_reduce($list, function ($carry, Monad $item) {
             return ($item instanceof Nothing)
-              ? $carry
-              : array_merge($carry, $item->unpack());
+                ? $carry
+                : array_merge($carry, $item->unpack());
         }, []);
     }
 
-    /**
-     * at returns a callback for retrieving a value of a keyed type at the given key.
-     *
-     * @param $key string
-     */
-    public static function at($key)
-    {
-        return function ($element) use ($key) {
-            if (is_array($element)) {
-                return isset($element[$key])
-                ? new static([$element[$key]])
-                : new Nothing;
-            }
-            if (is_object($element)) {
-                return property_exists($element, $key)
-                ? new static([$element->{$key}])
-                : new Nothing;
-            }
-            return new Nothing;
-        };
-    }
 }

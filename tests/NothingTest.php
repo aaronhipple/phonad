@@ -5,6 +5,9 @@ use aaronhipple\phonad\Nothing;
 
 class NothingTest extends TestCase
 {
+    /**
+     * @group monad
+     */
     public function testOperationsShortCircuitOnNothing()
     {
         $value = new Option(3);
