@@ -5,53 +5,67 @@ use aaronhipple\phonad\Nothing;
 
 class ListMonadTest extends TestCase
 {
-    public function testConstructsCorrectly() {
-        $result = new L(['valid value']);
-        $this->assertInstanceOf('aaronhipple\phonad\ListMonad', $result);
+    /**
+     * @group monad
+     */
+    public function testConstructsAndUnpacks() {
+        $monad = new L('one', 'two', 'three');
+        $result = $monad->unpack();
+        $this->assertEquals(['one', 'two', 'three'], $result);
     }
 
-    public function testThrowsExceptionOnInvalidValue() {
-        $this->expectException(InvalidArgumentException::class);
-        new L('invalid value');
-    }
-
+    /**
+     * @group monad
+     */
     public function testOperationsChain()
     {
-        $value = new L([1, 2, 3]);
+        $value = new L(1, 2, 3);
      
         $result = $value
             ->bind(function ($x) {
-                return new L([$x - 1]);
+                return new L($x - 1);
             })
             ->bind(function ($x) {
-                return new L([$x * 2]);
+                return new L($x * 2);
             })
             ->unpack();
         
         $this->assertEquals([0, 2, 4], $result);
     }
 
+    /**
+     * @group operation
+     * @group concat
+     */
     public function testConcatOnArrays() {
         $arrays = [
-          new L(['one']),
-          new L(['two']),
-          new L(['three']),
+          new L('one'),
+          new L('two'),
+          new L('three'),
         ];
         $result = L::concat($arrays);
         $this->assertEquals(['one', 'two', 'three'], $result);
     }
 
+    /**
+     * @group operation
+     * @group concat
+     */
     public function testConcatHandlesNone() {
         $arrays = [
-          new L(['one']),
-          new L(['two']),
+          new L('one'),
+          new L('two'),
           new Nothing,
-          new L(['three']),
+          new L('three'),
         ];
         $result = L::concat($arrays);
         $this->assertEquals(['one', 'two', 'three'], $result);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtHandlesArrays() {
         $books = [
           ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
@@ -59,7 +73,7 @@ class ListMonadTest extends TestCase
           ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit($books);
+        $booksList = L::unit(...$books);
         $emails = $booksList
           ->bind(L::at('author'))
           ->bind(L::at('email'))
@@ -68,6 +82,10 @@ class ListMonadTest extends TestCase
         $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtHandlesObjects() {
         $books = [
           (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
@@ -75,7 +93,7 @@ class ListMonadTest extends TestCase
           (object)['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit($books);
+        $booksList = L::unit(...$books);
         $emails = $booksList
           ->bind(L::at('author'))
           ->bind(L::at('email'))
@@ -84,6 +102,10 @@ class ListMonadTest extends TestCase
         $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtFailsGracefully() {
         $books = [
           ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
@@ -91,7 +113,7 @@ class ListMonadTest extends TestCase
           ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit($books);
+        $booksList = L::unit(...$books);
         $emails = $booksList
           ->bind(L::at('author'))
           ->bind(L::at('name'))

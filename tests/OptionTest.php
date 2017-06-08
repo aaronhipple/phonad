@@ -5,6 +5,9 @@ use aaronhipple\phonad\Nothing;
 
 class OptionTest extends TestCase
 {
+    /**
+     * @group monad
+     */
     public function testOperationsChain()
     {
         $value = new Option(3);
@@ -20,7 +23,11 @@ class OptionTest extends TestCase
         
         $this->assertEquals(9, $result);
     }
-    
+
+    /**
+     * @group operation
+     * @group at
+     */ 
     public function testAtHandlesArrays() {
         $book = ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
@@ -33,6 +40,10 @@ class OptionTest extends TestCase
         $this->assertEquals('steve@example.test', $email);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtFallsThroughArrays() {
         $book = ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
@@ -46,6 +57,10 @@ class OptionTest extends TestCase
         $this->assertNull($firstName);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtHandlesObjects() {
         $book = (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
@@ -58,6 +73,10 @@ class OptionTest extends TestCase
         $this->assertEquals('steve@example.test', $email);
     }
 
+    /**
+     * @group operation
+     * @group at
+     */
     public function testAtFallsThroughObjects() {
         $book = (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 

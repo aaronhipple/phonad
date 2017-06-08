@@ -22,6 +22,8 @@
  */
 class Option extends Monad
 {
+    use Traits\Traversable;
+
     /**
      * Represent Option::unit as a const containing a callable such
      * that it may be easily passed as a callback.
@@ -40,27 +42,5 @@ class Option extends Monad
         return ($result instanceof Option)
           ? $result
           : static::unit($result);
-    }
-
-    /**
-     * at returns a callback for retrieving a value of a keyed type at the given key.
-     *
-     * @param $key string
-     */
-    public static function at($key)
-    {
-        return function ($element) use ($key) {
-            if (is_array($element)) {
-                return isset($element[$key])
-                ? new static($element[$key])
-                : new Nothing;
-            }
-            if (is_object($element)) {
-                return property_exists($element, $key)
-                ? new static($element->{$key})
-                : new Nothing;
-            }
-            return new Nothing;
-        };
     }
 }

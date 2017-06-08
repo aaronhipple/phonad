@@ -10,9 +10,8 @@ class Utilities
      * @param callable $transforms... Functions from which to compose our resulting function.
      * @return callable
      */
-    public static function compose()
+    public static function compose(...$transforms)
     {
-        $transforms = func_get_args();
         if (count($transforms) < 1) {
             throw new InvalidArgumentException('compose requires at least one argument.');
         }
@@ -21,8 +20,7 @@ class Utilities
             return call_user_func_array($item, (array)$carry);
         };
 
-        return function () use ($transforms, $reduce) {
-            $arguments = func_get_args();
+        return function (...$arguments) use ($transforms, $reduce) {
             return array_reduce($transforms, $reduce, $arguments);
         };
     }
