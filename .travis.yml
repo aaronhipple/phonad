@@ -18,9 +18,6 @@ sudo: false
 
 install:
   - travis_retry composer install --no-interaction
-  - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
-  - chmod +x coveralls.phar
-  - php coveralls.phar --version  - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
 
 before_script:
   - mkdir -p build/logs
@@ -30,7 +27,7 @@ script:
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
-  - travis_retry php coveralls.phar -v
+  - ./vendor/bin/test-reporter
 
 branches:
   only: master
