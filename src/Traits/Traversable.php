@@ -2,13 +2,14 @@
 
 use aaronhipple\phonad\Nothing;
 
-trait Traversable {
+trait Traversable
+{
     /**
      * at returns a callback for retrieving a value of a keyed type at the given key.
      *
      * @param $key string
      */
-    public static function at($key)
+    protected static function at($key)
     {
         return function ($element) use ($key) {
             if (is_array($element)) {

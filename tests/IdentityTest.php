@@ -1,6 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use aaronhipple\phonad\Identity;
+use aaronhipple\phonad\Exceptions\MethodNotFoundException;
 
 class IdentityTest extends TestCase
 {
@@ -31,5 +32,15 @@ class IdentityTest extends TestCase
         $value = Identity::unit(3);
         $newValue = Identity::unit($value);
         $this->assertEquals(3, $newValue->unpack());
+    }
+
+    /**
+     * @group monad
+     */
+    public function testCallFailsOnUndefinedMethod()
+    {
+        $this->expectException(MethodNotFoundException::class);
+        $value = Identity::unit(3);
+        $value->foo(3);
     }
 }

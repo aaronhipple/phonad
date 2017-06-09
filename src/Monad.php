@@ -25,6 +25,17 @@ abstract class Monad
     }
 
     /**
+     * Calls to things that are private static methods pass through to retrieve a callback.
+     */
+    public function __call($name, $arguments)
+    {
+        if (method_exists($this, $name)) {
+            return $this->bind(static::$name(...$arguments));
+        }
+        throw new Exceptions\MethodNotFoundException(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
+    }
+
+    /**
      * A factory method for monads.
      *
      * @return Monad An instance of monad.
@@ -32,7 +43,7 @@ abstract class Monad
     public static function unit(...$value)
     {
         if (count($value) === 1 && current($value) instanceof Monad) {
-          return current($value);
+            return current($value);
         }
         return new static(...$value);
     }

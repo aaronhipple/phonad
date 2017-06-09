@@ -75,8 +75,8 @@ class ListMonadTest extends TestCase
 
         $booksList = L::unit(...$books);
         $emails = $booksList
-          ->bind(L::at('author'))
-          ->bind(L::at('email'))
+          ->at('author')
+          ->at('email')
           ->unpack();
 
         $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
@@ -95,8 +95,8 @@ class ListMonadTest extends TestCase
 
         $booksList = L::unit(...$books);
         $emails = $booksList
-          ->bind(L::at('author'))
-          ->bind(L::at('email'))
+          ->at('author')
+          ->at('email')
           ->unpack();
 
         $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
@@ -115,9 +115,9 @@ class ListMonadTest extends TestCase
 
         $booksList = L::unit(...$books);
         $emails = $booksList
-          ->bind(L::at('author'))
-          ->bind(L::at('name'))
-          ->bind(L::at('first'))
+          ->at('author')
+          ->at('name')
+          ->at('first')
           ->unpack();
 
         $this->assertEquals([], $emails);
