@@ -122,4 +122,25 @@ class ListMonadTest extends TestCase
 
         $this->assertEquals([], $emails);
     }
+
+    /**
+     * @group operation
+     * @group where
+     */
+    public function testWhereFiltersElements() {
+        $books = [
+          ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
+          ['title' => 'Another Title', 'author' => ['name' => 'Frank']],
+          ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
+        ];
+
+        $booksList = L::unit(...$books);
+        $theRightBook = $booksList
+          ->where(function ($element) {
+              return $element['title'] === 'War and Peace';
+          })
+          ->unpack();
+
+        $this->assertEquals($books[0], current($theRightBook));
+    }
 }
