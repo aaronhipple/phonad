@@ -32,7 +32,7 @@ abstract class Monad
         if (method_exists($this, $name)) {
             return $this->bind(static::$name(...$arguments));
         }
-        throw new \Error(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
+        throw new Exceptions\MethodNotFoundException(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
     }
 
     /**
