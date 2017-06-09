@@ -33,8 +33,8 @@ class OptionTest extends TestCase
 
         $bookOption = Option::unit($book);
         $email = $bookOption
-          ->bind(Option::at('author'))
-          ->bind(Option::at('email'))
+          ->at('author')
+          ->at('email')
           ->unpack();
 
         $this->assertEquals('steve@example.test', $email);
@@ -49,9 +49,9 @@ class OptionTest extends TestCase
 
         $bookOption = Option::unit($book);
         $firstName = $bookOption
-          ->bind(Option::at('author'))
-          ->bind(Option::at('name'))
-          ->bind(Option::at('first'))
+          ->at('author')
+          ->at('name')
+          ->at('first')
           ->unpack();
 
         $this->assertNull($firstName);
@@ -66,8 +66,8 @@ class OptionTest extends TestCase
 
         $bookOption = Option::unit($book);
         $email = $bookOption
-          ->bind(Option::at('author'))
-          ->bind(Option::at('email'))
+          ->at('author')
+          ->at('email')
           ->unpack();
 
         $this->assertEquals('steve@example.test', $email);
@@ -82,9 +82,9 @@ class OptionTest extends TestCase
 
         $bookOption = Option::unit($book);
         $firstName = $bookOption
-          ->bind(Option::at('author'))
-          ->bind(Option::at('name'))
-          ->bind(Option::at('first'))
+          ->at('author')
+          ->at('name')
+          ->at('first')
           ->unpack();
 
         $this->assertNull($firstName);

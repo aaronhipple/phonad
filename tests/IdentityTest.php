@@ -32,4 +32,14 @@ class IdentityTest extends TestCase
         $newValue = Identity::unit($value);
         $this->assertEquals(3, $newValue->unpack());
     }
+
+    /**
+     * @group monad
+     */
+    public function testCallFailsOnUndefinedMethod()
+    {
+        $this->expectException(Error::class);
+        $value = Identity::unit(3);
+        $value->foo(3);
+    }
 }

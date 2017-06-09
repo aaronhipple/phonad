@@ -8,7 +8,7 @@ trait Traversable {
      *
      * @param $key string
      */
-    public static function at($key)
+    protected static function at($key)
     {
         return function ($element) use ($key) {
             if (is_array($element)) {
