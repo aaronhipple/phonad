@@ -26,18 +26,16 @@ class Utilities
     }
 
     /**
-     * maybeUnpack returns a function that either unpacks
-     * a Monadic value or returns the raw value.
+     * maybeUnpack either unpacks a Monadic value or returns the raw value.
      *
-     * @return callable
+     * @param $value mixed
+     * @return mixed
      */
-    public static function maybeUnpack()
+    public static function maybeUnpack($value)
     {
-        return function ($value) {
-            if ($value instanceof Monad) {
-                return $value->unpack();
-            }
-            return $value;
-        };
+        if ($value instanceof Monad) {
+            return $value->unpack();
+        }
+        return $value;
     }
 }

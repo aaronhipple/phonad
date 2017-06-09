@@ -27,8 +27,9 @@ class OptionTest extends TestCase
     /**
      * @group operation
      * @group at
-     */ 
-    public function testAtHandlesArrays() {
+     */
+    public function testAtHandlesArrays()
+    {
         $book = ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
         $bookOption = Option::unit($book);
@@ -44,7 +45,8 @@ class OptionTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtFallsThroughArrays() {
+    public function testAtFallsThroughArrays()
+    {
         $book = ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
         $bookOption = Option::unit($book);
@@ -61,7 +63,8 @@ class OptionTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtHandlesObjects() {
+    public function testAtHandlesObjects()
+    {
         $book = (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
         $bookOption = Option::unit($book);
@@ -77,7 +80,8 @@ class OptionTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtFallsThroughObjects() {
+    public function testAtFallsThroughObjects()
+    {
         $book = (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']];
 
         $bookOption = Option::unit($book);

@@ -14,12 +14,12 @@ trait Traversable
         return function ($element) use ($key) {
             if (is_array($element)) {
                 return isset($element[$key])
-                ? new static($element[$key])
+                ? $element[$key]
                 : new Nothing;
             }
             if (is_object($element)) {
                 return property_exists($element, $key)
-                ? new static($element->{$key})
+                ? $element->{$key}
                 : new Nothing;
             }
             return new Nothing;
