@@ -47,7 +47,7 @@ class ListMonad extends Monad
      */
     public function bind(callable $transform)
     {
-        $results = self::concat(array_map($transform, $this->value));
+        $results = self::concat(array_map(static::$unit, array_map($transform, $this->value)));
         return new static(...$results);
     }
 

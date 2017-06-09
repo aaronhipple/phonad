@@ -39,7 +39,7 @@ class UtilitiesTest extends TestCase
     public function testMaybeUnpackWorksOnMonad()
     {
         $value = new Option(3);
-        $result = call_user_func(Utilities::maybeUnpack(), $value);
+        $result = Utilities::maybeUnpack($value);
         $this->assertEquals(3, $result);
     }
 
@@ -49,7 +49,7 @@ class UtilitiesTest extends TestCase
     public function testMaybeUnpackWorksOnNonMonad()
     {
         $value = 3;
-        $result = call_user_func(Utilities::maybeUnpack(), $value);
+        $result = Utilities::maybeUnpack($value);
         $this->assertEquals(3, $result);
     }
 }

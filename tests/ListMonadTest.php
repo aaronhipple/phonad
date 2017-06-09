@@ -8,7 +8,8 @@ class ListMonadTest extends TestCase
     /**
      * @group monad
      */
-    public function testConstructsAndUnpacks() {
+    public function testConstructsAndUnpacks()
+    {
         $monad = new L('one', 'two', 'three');
         $result = $monad->unpack();
         $this->assertEquals(['one', 'two', 'three'], $result);
@@ -37,7 +38,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group concat
      */
-    public function testConcatOnArrays() {
+    public function testConcatOnArrays()
+    {
         $arrays = [
           new L('one'),
           new L('two'),
@@ -51,7 +53,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group concat
      */
-    public function testConcatHandlesNone() {
+    public function testConcatHandlesNone()
+    {
         $arrays = [
           new L('one'),
           new L('two'),
@@ -66,7 +69,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtHandlesArrays() {
+    public function testAtHandlesArrays()
+    {
         $books = [
           ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
           ['title' => 'Another Title', 'author' => ['name' => 'Frank']],
@@ -86,7 +90,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtHandlesObjects() {
+    public function testAtHandlesObjects()
+    {
         $books = [
           (object)['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
           (object)['title' => 'Another Title', 'author' => ['name' => 'Frank']],
@@ -106,7 +111,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group at
      */
-    public function testAtFailsGracefully() {
+    public function testAtFailsGracefully()
+    {
         $books = [
           ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
           ['title' => 'Another Title', 'author' => ['name' => 'Frank']],
@@ -127,7 +133,8 @@ class ListMonadTest extends TestCase
      * @group operation
      * @group where
      */
-    public function testWhereFiltersElements() {
+    public function testWhereFiltersElements()
+    {
         $books = [
           ['title' => 'War and Peace', 'author' => ['name' => 'Steve', 'email' => 'steve@example.test']],
           ['title' => 'Another Title', 'author' => ['name' => 'Frank']],
