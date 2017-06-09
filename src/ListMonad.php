@@ -21,6 +21,7 @@ use InvalidArgumentException;
 class ListMonad extends Monad
 {
     use Traits\Traversable;
+    use Traits\Collection;
 
     /**
      * Represent ListMonad::unit as a const containing a callable such
