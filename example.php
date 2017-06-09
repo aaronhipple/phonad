@@ -38,12 +38,12 @@ $books = [
   ],
 ];
 
-$bookMonad = new L($books);
+$bookMonad = new L(...$books);
 
 $names = $bookMonad
-  ->bind(L::at('author'))
-  ->bind(L::at('name'))
-  ->bind(L::at('middle'))
+  ->at('author')
+  ->at('name')
+  ->at('middle')
   ->unpack();
 
 var_dump($names);
@@ -52,7 +52,7 @@ var_dump($names);
 
 $replicate = function ($times) {
     return function ($value) use ($times) {
-        return new L(array_fill(0, $times, $value));
+        return new L(...array_fill(0, $times, $value));
     };
 };
 
