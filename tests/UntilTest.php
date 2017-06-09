@@ -117,7 +117,9 @@ class UntilTest extends TestCase
         $until = new Until('value');
 
         $newUntil = $until
-            ->bind(Nothing::$unit);
+            ->bind(function () {
+                return new Nothing;
+            });
 
         $this->assertInstanceOf(Until::class, $newUntil);
     }
