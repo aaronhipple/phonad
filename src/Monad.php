@@ -43,7 +43,7 @@ abstract class Monad
     public static function unit(...$value)
     {
         if (count($value) === 1 && current($value) instanceof Monad) {
-          return current($value);
+            return current($value);
         }
         return new static(...$value);
     }

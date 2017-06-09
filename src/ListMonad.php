@@ -66,5 +66,4 @@ class ListMonad extends Monad
                 : array_merge($carry, $item->unpack());
         }, []);
     }
-
 }

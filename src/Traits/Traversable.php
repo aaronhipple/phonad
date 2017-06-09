@@ -2,7 +2,8 @@
 
 use aaronhipple\phonad\Nothing;
 
-trait Traversable {
+trait Traversable
+{
     /**
      * at returns a callback for retrieving a value of a keyed type at the given key.
      *
