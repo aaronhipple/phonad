@@ -9,7 +9,7 @@ class Something extends Until
      * Represent Something::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\Something::unit';
+    const unit = 'Phonad\Something::unit';
 
     /**
      * Apply a transformation to the monad.

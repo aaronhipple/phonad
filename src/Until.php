@@ -29,7 +29,7 @@ class Until extends Monad
      * Represent Until::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\Until::unit';
+    const unit = 'Phonad\Until::unit';
 
     /**
      * Apply a transformation to the monad.

@@ -29,7 +29,7 @@ class Option extends Monad
      * Represent Option::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\Option::unit';
+    const unit = 'Phonad\Option::unit';
 
     /**
      * Apply a transformation to the monad.

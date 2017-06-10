@@ -31,7 +31,7 @@ class Collection extends Monad
      * Represent Collection::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\Collection::unit';
+    const unit = 'Phonad\Collection::unit';
 
     /**
      * Collection constructor.
