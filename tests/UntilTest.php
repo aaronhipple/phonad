@@ -21,13 +21,13 @@ class UntilTest extends TestCase
         $age = $ageMonad
             ->bind(function ($person) {
                 if (!$person->age) {
-                    return new Nothing;
+                    return null;
                 }
                 return $person->age;
             })
             ->bind(function ($person) {
                 if (!$person->birthday) {
-                    return new Nothing;
+                    return null;
                 }
                 $birthday = new DateTime($person->birthday);
                 $now = new DateTime;
@@ -57,7 +57,7 @@ class UntilTest extends TestCase
         $age = $ageMonad
             ->bind(function ($person) {
                 if (!$person->age) {
-                    return new Nothing;
+                    return null;
                 }
                 return $person->age;
             })
@@ -118,7 +118,7 @@ class UntilTest extends TestCase
 
         $newUntil = $until
             ->bind(function () {
-                return new Nothing;
+                return null;
             });
 
         $this->assertInstanceOf(Until::class, $newUntil);

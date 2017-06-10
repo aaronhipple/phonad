@@ -17,7 +17,7 @@ class NothingTest extends TestCase
             return $x + 3;
         })
         ->bind(function ($x) {
-            return new Nothing;
+            return null;
         })
         ->bind(function ($x) {
             return $x + 3;
