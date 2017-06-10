@@ -15,14 +15,14 @@ trait Traversable
             if (is_array($element)) {
                 return isset($element[$key])
                 ? $element[$key]
-                : new Nothing;
+                : null;
             }
             if (is_object($element)) {
                 return property_exists($element, $key)
                 ? $element->{$key}
-                : new Nothing;
+                : null;
             }
-            return new Nothing;
+            return null;
         };
     }
 }

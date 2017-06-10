@@ -24,10 +24,10 @@ class ListMonadTest extends TestCase
      
         $result = $value
             ->bind(function ($x) {
-                return new L($x - 1);
+                return $x - 1;
             })
             ->bind(function ($x) {
-                return new L($x * 2);
+                return $x * 2;
             })
             ->unpack();
         
