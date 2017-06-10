@@ -9,6 +9,8 @@
  */
 abstract class Monad
 {
+    use Traits\Arithmetic;
+
     /**
      * Our monad's wrapped value.
      *

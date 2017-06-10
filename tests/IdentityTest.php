@@ -53,4 +53,95 @@ class IdentityTest extends TestCase
         $monad = Identity::unit(null);
         $this->assertInstanceOf(Nothing::class, $monad);
     }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testAdd()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->add(3)
+            ->unpack();
+        $this->assertEquals(6, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testSubtractFrom()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->subtractFrom(9)
+            ->unpack();
+        $this->assertEquals(6, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testSubtract()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->subtract(9)
+            ->unpack();
+        $this->assertEquals(-6, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testMultiply()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->multiply(3)
+            ->unpack();
+        $this->assertEquals(9, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testDivide()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->divide(6)
+            ->unpack();
+        $this->assertEquals(2, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testDivideBy()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->divideBy(2)
+            ->unpack();
+        $this->assertEquals(1.5, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testDivideByZero()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->divideBy(0)
+            ->unpack();
+        $this->assertNull($result);
+    }
 }
