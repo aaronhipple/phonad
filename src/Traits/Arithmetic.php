@@ -98,4 +98,21 @@ trait Arithmetic
             return $divideBy($y);
         };
     }
+
+    /**
+     * modulo returns a callback for modulo.
+     *
+     * @param $y number
+     */
+    protected static function modulo($y)
+    {
+        /**
+         * @param $x number
+         */
+        return function ($x) use ($y) {
+            return $y !== 0
+                ? $x % $y
+                : null;
+        };
+    }
 }

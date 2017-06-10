@@ -144,4 +144,30 @@ class IdentityTest extends TestCase
             ->unpack();
         $this->assertNull($result);
     }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testModulo()
+    {
+        $number = Identity::unit(5);
+        $result = $number
+            ->modulo(3)
+            ->unpack();
+        $this->assertEquals(2, $result);
+    }
+
+    /**
+     * @group operations
+     * @group arithmetic
+     */
+    public function testModuloByZero()
+    {
+        $number = Identity::unit(3);
+        $result = $number
+            ->modulo(0)
+            ->unpack();
+        $this->assertNull($result);
+    }
 }
