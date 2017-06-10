@@ -1,7 +1,7 @@
 <?php namespace Phonad\Traits;
 
 /**
- * Arithmetic provides operations that can be used .
+ * Arithmetic provides some mathematical operations.
  */
 trait Arithmetic
 {
@@ -110,9 +110,10 @@ trait Arithmetic
          * @param $x number
          */
         return function ($x) use ($y) {
-            return $y !== 0
-                ? $x % $y
-                : null;
+            if ($y === 0) {
+                return null;
+            }
+            return $x % $y;
         };
     }
 }
