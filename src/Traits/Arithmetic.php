@@ -46,7 +46,8 @@ trait Arithmetic
          * @param $x number
          */
         return function ($x) use ($y) {
-            return static::subtractFrom($x)($y);
+            $subtractFrom = static::subtractFrom($x);
+            return $subtractFrom($y);
         };
     }
 
@@ -93,7 +94,8 @@ trait Arithmetic
          * @param $x number
          */
         return function ($x) use ($y) {
-            return static::divide($x)($y);
+            $divideBy = static::divide($x);
+            return $divideBy($y);
         };
     }
 }
