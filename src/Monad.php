@@ -52,12 +52,6 @@ abstract class Monad
      */
     public static function unit(...$value)
     {
-        if (count($value) === 1 && current($value) instanceof Monad) {
-            return current($value);
-        }
-        if (count($value) === 1 && is_null(current($value))) {
-            return new Nothing;
-        }
         return new static(...$value);
     }
 

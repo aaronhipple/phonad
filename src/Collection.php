@@ -47,7 +47,7 @@ class Collection extends Monad
      * Apply a transformation to each item of the monad.
      *
      * @param callable $transform
-     * @return Collection|Monad
+     * @return Collection
      */
     public function bind(callable $transform)
     {
