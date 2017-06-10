@@ -10,7 +10,9 @@ engines:
   phpmd:
     enabled: true
     checks:
-      Naming/ShortMethodName:
+      Naming/ShortMethodName: # Clarity seems okay for functions like `at`
+        enabled: false
+      Naming/ShortVariable:   # Mainly for arithmetic functions with vars like $x and $y
         enabled: false
       CleanCode/StaticAccess:
         enabled: false
