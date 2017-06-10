@@ -54,5 +54,4 @@ class Collection extends Monad
         $results = self::concat(array_map(static::unit, array_map($transform, $this->value)));
         return static::unit(...$results);
     }
-
 }
