@@ -92,7 +92,7 @@ $isUser = function ($person) {
   return isset($person['type']) && $person['type'] === 'user';
 };
 
-$users = new Phonad\Collection($variables)
+$users = new Phonad\Collection($node)
   ->at('field_people')
   ->at(LANGUAGE_NONE)
   ->where($isUser);
@@ -100,6 +100,12 @@ $users = new Phonad\Collection($variables)
 $userFirstNames = $users
   ->at('name')
   ->at('first')
+  ->unpack();
+
+// Let's get last names too, since it's so easy!
+$userLastNames = $users
+  ->at('name')
+  ->at('last')
   ->unpack();
 ```
 
