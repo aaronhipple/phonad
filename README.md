@@ -22,7 +22,7 @@ $books = [
   ['title' => 'A Book Title', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
 ];
 
-$booksList = Collection::unit(...$books);
+$booksList = Phonad\Collection::unit(...$books);
 $emails = $booksList
   ->at('author')
   ->at('email')
