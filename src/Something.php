@@ -1,19 +1,15 @@
 <?php namespace Phonad;
 
-use Closure;
-
 /**
  * Something represents an fulfilled value in the Until monad.
  */
 class Something extends Until
 {
-    protected $value;
-
     /**
      * Represent Something::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\Something::unit';
+    const unit = 'Phonad\Something::unit';
 
     /**
      * Apply a transformation to the monad.

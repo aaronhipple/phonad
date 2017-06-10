@@ -1,7 +1,11 @@
 <?php namespace Phonad\Traits;
 
 use Phonad\Nothing;
+use Phonad\Utilities;
 
+/**
+ * Collection provides operations that can be used on Collection monads.
+ */
 trait Collection
 {
     /**
@@ -13,8 +17,25 @@ trait Collection
     {
         return function ($element) use ($test) {
             return $test($element)
-            ? new static($element)
-            : new Nothing;
+            ? $element
+            : null;
         };
+    }
+
+    /**
+     * concat joins an array of values into a single array of unpacked values.
+     *
+     * Concat handles a unit of Nothing as a special case, ignoring it.
+     *
+     * @param $list array
+     * @return array
+     */
+    public static function concat($list)
+    {
+        return array_reduce($list, function ($carry, $item) {
+            return ($item instanceof Nothing || is_null($item))
+                ? $carry
+                : array_merge($carry, Utilities::maybeUnpack($item));
+        }, []);
     }
 }

@@ -12,7 +12,8 @@
     "require": {},
     "require-dev": {
         "phpunit/phpunit": ">=5.0 <7.0",
-        "codeclimate/php-test-reporter": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "apigen/apigen": "^4.1"
     },
     "autoload": {
       "psr-4": {"Phonad\\": "src/"}

@@ -2,6 +2,9 @@
 
 use InvalidArgumentException;
 
+/**
+ * Utilities provides some handy helpers for our Monadic operations.
+ */
 class Utilities
 {
     /**
