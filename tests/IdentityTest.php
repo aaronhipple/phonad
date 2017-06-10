@@ -1,8 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use aaronhipple\phonad\Identity;
-use aaronhipple\phonad\Nothing;
-use aaronhipple\phonad\Exceptions\MethodNotFoundException;
+use Phonad\Identity;
+use Phonad\Nothing;
+use Phonad\Exceptions\MethodNotFoundException;
 
 class IdentityTest extends TestCase
 {

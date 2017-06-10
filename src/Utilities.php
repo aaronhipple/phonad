@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 use InvalidArgumentException;
 

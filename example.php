@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use aaronhipple\phonad\ListMonad as L;
-use aaronhipple\phonad\Nothing;
-use aaronhipple\phonad\Option;
+use Phonad\ListMonad as L;
+use Phonad\Nothing;
+use Phonad\Option;
 
 $books = [
   [

@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 /**
  * Until permits the chaining of operations that may or may
@@ -13,7 +13,7 @@ class Until extends Monad
      * Represent Until::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\Until::unit';
+    public static $unit = 'Phonad\Until::unit';
 
     /**
      * Apply a transformation to the monad.

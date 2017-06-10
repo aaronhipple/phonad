@@ -15,6 +15,6 @@
         "codeclimate/php-test-reporter": "dev-master"
     },
     "autoload": {
-      "psr-4": {"aaronhipple\\phonad\\": "src/"}
+      "psr-4": {"Phonad\\": "src/"}
     }
 }

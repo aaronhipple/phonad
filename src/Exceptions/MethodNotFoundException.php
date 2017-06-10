@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad\Exceptions;
+<?php namespace Phonad\Exceptions;
 
 class MethodNotFoundException extends \Exception
 {

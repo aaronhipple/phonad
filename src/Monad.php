@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 /**
  * Monad allows the enclosure of a value or values

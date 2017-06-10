@@ -1,8 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use aaronhipple\phonad\Option;
-use aaronhipple\phonad\Nothing;
-use aaronhipple\phonad\Utilities;
+use Phonad\Option;
+use Phonad\Nothing;
+use Phonad\Utilities;
 
 class UtilitiesTest extends TestCase
 {

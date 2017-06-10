@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use aaronhipple\phonad\Option;
-use aaronhipple\phonad\Nothing;
+use Phonad\Option;
+use Phonad\Nothing;
 
 class NothingTest extends TestCase
 {

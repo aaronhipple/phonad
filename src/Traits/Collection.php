@@ -1,6 +1,6 @@
-<?php namespace aaronhipple\phonad\Traits;
+<?php namespace Phonad\Traits;
 
-use aaronhipple\phonad\Nothing;
+use Phonad\Nothing;
 
 trait Collection
 {

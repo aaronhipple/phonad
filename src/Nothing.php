@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 /**
  * Nothing represents an empty value in the Option monad.
@@ -11,7 +11,7 @@ class Nothing extends Option
      * Represent Nothing::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\Nothing::unit';
+    public static $unit = 'Phonad\Nothing::unit';
 
 
     /**

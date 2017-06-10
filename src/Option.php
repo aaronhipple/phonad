@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 /**
  * Option permits the chaining of operations that may or may
@@ -6,8 +6,8 @@
  * fall through without execution. This has the effect of squashing errors.
  *
  * Example usage:
- *   use aaronhipple\phonad\Option;
- *   use aaronhipple\phonad\Nothing;
+ *   use Phonad\Option;
+ *   use Phonad\Nothing;
  *   use PHPUnit\Framework\Assert;
  *
  *   $value = new Option(3);
@@ -28,7 +28,7 @@ class Option extends Monad
      * Represent Option::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\Option::unit';
+    public static $unit = 'Phonad\Option::unit';
 
     /**
      * Apply a transformation to the monad.

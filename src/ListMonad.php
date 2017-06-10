@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 use InvalidArgumentException;
 
@@ -6,7 +6,7 @@ use InvalidArgumentException;
  * ListMonad permits the chaining of operations on a list of items.
  *
  * Example usage:
- *   use aaronhipple\phonad\List;
+ *   use Phonad\List;
  *   use PHPUnit\Framework\Assert;
  *
  *   $value = new List([1, 2, 3]);
@@ -27,7 +27,7 @@ class ListMonad extends Monad
      * Represent ListMonad::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\ListMonad::unit';
+    public static $unit = 'Phonad\ListMonad::unit';
 
     /**
      * ListMonad constructor.

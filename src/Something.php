@@ -1,4 +1,4 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 use Closure;
 
@@ -13,7 +13,7 @@ class Something extends Until
      * Represent Something::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\Something::unit';
+    public static $unit = 'Phonad\Something::unit';
 
     /**
      * Apply a transformation to the monad.

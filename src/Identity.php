@@ -1,11 +1,11 @@
-<?php namespace aaronhipple\phonad;
+<?php namespace Phonad;
 
 /**
  * Identity permits the chaining of operations with no additional
  * special behavior. It carries no information other than its value.
  *
  * Example usage:
- *   use aaronhipple\phonad\Identity;
+ *   use Phonad\Identity;
  *   use PHPUnit\Framework\Assert;
  *
  *   $value = new Identity(3);
@@ -23,7 +23,7 @@ class Identity extends Monad
      * Represent Identity::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'aaronhipple\phonad\Identity::unit';
+    public static $unit = 'Phonad\Identity::unit';
 
     /**
      * Apply a transformation to the monad.

@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use aaronhipple\phonad\ListMonad as L;
-use aaronhipple\phonad\Nothing;
+use Phonad\ListMonad as L;
+use Phonad\Nothing;
 
 class ListMonadTest extends TestCase
 {

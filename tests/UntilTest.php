@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use aaronhipple\phonad\Until;
-use aaronhipple\phonad\Nothing;
+use Phonad\Until;
+use Phonad\Nothing;
 
 class UntilTest extends TestCase
 {
