@@ -12,6 +12,8 @@ engines:
     checks:
       Naming/ShortMethodName:
         enabled: false
+      CleanCode/StaticAccess:
+        enabled: false
 ratings:
   paths:
   - "**.php"
