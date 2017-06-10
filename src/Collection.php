@@ -51,7 +51,7 @@ class Collection extends Monad
      */
     public function bind(callable $transform)
     {
-        $results = self::concat(array_map(static::unit, array_map($transform, $this->value)));
+        $results = array_map($transform, $this->value);
         return static::unit(...$results);
     }
 }

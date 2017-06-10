@@ -36,37 +36,6 @@ class CollectionTest extends TestCase
 
     /**
      * @group operation
-     * @group concat
-     */
-    public function testConcatOnArrays()
-    {
-        $arrays = [
-          new Collection('one'),
-          new Collection('two'),
-          new Collection('three'),
-        ];
-        $result = Collection::concat($arrays);
-        $this->assertEquals(['one', 'two', 'three'], $result);
-    }
-
-    /**
-     * @group operation
-     * @group concat
-     */
-    public function testConcatHandlesNone()
-    {
-        $arrays = [
-          new Collection('one'),
-          new Collection('two'),
-          new Nothing,
-          new Collection('three'),
-        ];
-        $result = Collection::concat($arrays);
-        $this->assertEquals(['one', 'two', 'three'], $result);
-    }
-
-    /**
-     * @group operation
      * @group at
      */
     public function testAtHandlesArrays()
@@ -83,7 +52,7 @@ class CollectionTest extends TestCase
           ->at('email')
           ->unpack();
 
-        $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
+        $this->assertEquals(['steve@example.test', null, 'ellen@example.test'], $emails);
     }
 
     /**
@@ -104,7 +73,7 @@ class CollectionTest extends TestCase
           ->at('email')
           ->unpack();
 
-        $this->assertEquals(['steve@example.test', 'ellen@example.test'], $emails);
+        $this->assertEquals(['steve@example.test', null, 'ellen@example.test'], $emails);
     }
 
     /**
@@ -126,7 +95,7 @@ class CollectionTest extends TestCase
           ->at('first')
           ->unpack();
 
-        $this->assertEquals([], $emails);
+        $this->assertEquals([null, null, null], $emails);
     }
 
     /**
@@ -144,10 +113,17 @@ class CollectionTest extends TestCase
         $booksList = Collection::unit(...$books);
         $theRightBook = $booksList
           ->where(function ($element) {
-              return $element['title'] === 'War and Peace';
+              return $element['title'] === 'Another Title';
           })
           ->unpack();
 
-        $this->assertEquals($books[0], current($theRightBook));
+        $this->assertEquals(
+            [
+                null,
+                $books[1],
+                null,
+            ],
+            $theRightBook
+        );
     }
 }
