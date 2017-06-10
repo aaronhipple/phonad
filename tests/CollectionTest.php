@@ -1,16 +1,16 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use Phonad\ListMonad as L;
+use Phonad\Collection;
 use Phonad\Nothing;
 
-class ListMonadTest extends TestCase
+class CollectionTest extends TestCase
 {
     /**
      * @group monad
      */
     public function testConstructsAndUnpacks()
     {
-        $monad = new L('one', 'two', 'three');
+        $monad = new Collection('one', 'two', 'three');
         $result = $monad->unpack();
         $this->assertEquals(['one', 'two', 'three'], $result);
     }
@@ -20,7 +20,7 @@ class ListMonadTest extends TestCase
      */
     public function testOperationsChain()
     {
-        $value = new L(1, 2, 3);
+        $value = new Collection(1, 2, 3);
      
         $result = $value
             ->bind(function ($x) {
@@ -41,11 +41,11 @@ class ListMonadTest extends TestCase
     public function testConcatOnArrays()
     {
         $arrays = [
-          new L('one'),
-          new L('two'),
-          new L('three'),
+          new Collection('one'),
+          new Collection('two'),
+          new Collection('three'),
         ];
-        $result = L::concat($arrays);
+        $result = Collection::concat($arrays);
         $this->assertEquals(['one', 'two', 'three'], $result);
     }
 
@@ -56,12 +56,12 @@ class ListMonadTest extends TestCase
     public function testConcatHandlesNone()
     {
         $arrays = [
-          new L('one'),
-          new L('two'),
+          new Collection('one'),
+          new Collection('two'),
           new Nothing,
-          new L('three'),
+          new Collection('three'),
         ];
-        $result = L::concat($arrays);
+        $result = Collection::concat($arrays);
         $this->assertEquals(['one', 'two', 'three'], $result);
     }
 
@@ -77,7 +77,7 @@ class ListMonadTest extends TestCase
           ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit(...$books);
+        $booksList = Collection::unit(...$books);
         $emails = $booksList
           ->at('author')
           ->at('email')
@@ -98,7 +98,7 @@ class ListMonadTest extends TestCase
           (object)['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit(...$books);
+        $booksList = Collection::unit(...$books);
         $emails = $booksList
           ->at('author')
           ->at('email')
@@ -119,7 +119,7 @@ class ListMonadTest extends TestCase
           ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit(...$books);
+        $booksList = Collection::unit(...$books);
         $emails = $booksList
           ->at('author')
           ->at('name')
@@ -141,7 +141,7 @@ class ListMonadTest extends TestCase
           ['title' => 'A Book Title.', 'author' => ['name' => 'Ellen', 'email' => 'ellen@example.test']],
         ];
 
-        $booksList = L::unit(...$books);
+        $booksList = Collection::unit(...$books);
         $theRightBook = $booksList
           ->where(function ($element) {
               return $element['title'] === 'War and Peace';

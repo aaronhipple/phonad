@@ -3,34 +3,37 @@
 use InvalidArgumentException;
 
 /**
- * ListMonad permits the chaining of operations on a list of items.
+ * Collection permits the chaining of operations on a list of items.
  *
  * Example usage:
- *   use Phonad\List;
+ *
+ * ```php
+ *   use Phonad\Collection;
  *   use PHPUnit\Framework\Assert;
  *
- *   $value = new List([1, 2, 3]);
+ *   $value = new Collection(1, 2, 3);
  *
  *   $result = $value
- *     ->bind(function ($x) { return [$x - 1]; })
- *     ->bind(function ($x) { return [$x * 2]; })
+ *     ->bind(function ($x) { return $x - 1; })
+ *     ->bind(function ($x) { return $x * 2; })
  *     ->unpack();
  *
  *   Assert::assertEquals([0, 2, 4], $result);
+ * ```
  */
-class ListMonad extends Monad
+class Collection extends Monad
 {
     use Traits\Traversable;
     use Traits\Collection;
 
     /**
-     * Represent ListMonad::unit as a const containing a callable such
+     * Represent Collection::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
-    public static $unit = 'Phonad\ListMonad::unit';
+    public static $unit = 'Phonad\Collection::unit';
 
     /**
-     * ListMonad constructor.
+     * Collection constructor.
      *
      * @param $value mixed The value to be contained. If not an array, an array will be constructed.
      */
@@ -43,12 +46,12 @@ class ListMonad extends Monad
      * Apply a transformation to each item of the monad.
      *
      * @param callable $transform
-     * @return ListMonad A transformed instance of the monad.
+     * @return Monad A transformed monad of the monad.
      */
     public function bind(callable $transform)
     {
         $results = self::concat(array_map(static::$unit, array_map($transform, $this->value)));
-        return new static(...$results);
+        return static::unit(...$results);
     }
 
     /**
