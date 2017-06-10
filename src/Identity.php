@@ -4,18 +4,20 @@
  * Identity permits the chaining of operations with no additional
  * special behavior. It carries no information other than its value.
  *
- * Example usage:
- *   use Phonad\Identity;
- *   use PHPUnit\Framework\Assert;
+ * Example:
+ * ```php
+ * use Phonad\Identity;
+ * use PHPUnit\Framework\Assert;
  *
- *   $value = new Identity(3);
+ * $value = new Identity(3);
  *
- *   $result = $value
- *     ->bind(function ($x) { return $x + 3; })
- *     ->bind(function ($x) { return $x + 3; })
- *     ->unpack();
+ * $result = $value
+ *   ->bind(function ($x) { return $x + 3; })
+ *   ->bind(function ($x) { return $x + 3; })
+ *   ->unpack();
  *
- *   Assert::assertEquals(9, $result);
+ * Assert::assertEquals(9, $result);
+ * ```
  */
 class Identity extends Monad
 {
@@ -29,7 +31,7 @@ class Identity extends Monad
      * Apply a transformation to the monad.
      *
      * @param callable $transform
-     * @return Option|null A transformed instance of the monad (or null).
+     * @return Identity|Monad
      */
     public function bind(callable $transform)
     {

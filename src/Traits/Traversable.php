@@ -1,7 +1,8 @@
 <?php namespace Phonad\Traits;
 
-use Phonad\Nothing;
-
+/**
+ * Traversable provides operations that may be used in Traversable monads.
+ */
 trait Traversable
 {
     /**

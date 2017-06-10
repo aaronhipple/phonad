@@ -5,14 +5,11 @@
  */
 class Nothing extends Option
 {
-    protected $value = null;
-
     /**
      * Represent Nothing::unit as a const containing a callable such
      * that it may be easily passed as a callback.
      */
     public static $unit = 'Phonad\Nothing::unit';
-
 
     /**
      * Nothing constructor.

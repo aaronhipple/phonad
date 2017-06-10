@@ -11,6 +11,8 @@ abstract class Monad
 {
     /**
      * Our monad's wrapped value.
+     *
+     * @var mixed
      */
     protected $value;
 
@@ -26,6 +28,11 @@ abstract class Monad
 
     /**
      * Calls to things that are private static methods pass through to retrieve a callback.
+     *
+     * @param $name string The called method name.
+     * @param $arguments array An array of function arguments.
+     * @return Monad
+     * @throws Phonad\Exceptions\MethodNotFoundException
      */
     public function __call($name, $arguments)
     {
@@ -38,7 +45,8 @@ abstract class Monad
     /**
      * A factory method for monads.
      *
-     * @return Monad An instance of monad.
+     * @param $value mixed The value(s) being encapsulated.
+     * @return Monad
      */
     public static function unit(...$value)
     {
@@ -55,7 +63,7 @@ abstract class Monad
      * Apply a transformation to the monad.
      *
      * @param callable $transform
-     * @return Monad A transformed instance of the monad.
+     * @return Monad
      */
     abstract public function bind(callable $transform);
 

@@ -4,6 +4,22 @@
  * Until permits the chaining of operations that may or may
  * not return a value. If a value is returned, subsequent operations fall
  * through without execution. This permits several attempts at obtaining a value.
+ *
+ * Example:
+ * ```php
+ * use Phonad\Until;
+ * use PHPUnit\Framework\Assert;
+ *
+ * $value = new Until(3);
+ *
+ * $result = $value
+ *   ->bind(function ($x) { return null; })
+ *   ->bind(function ($x) { return $x + 3; })
+ *   ->bind(function ($x) { return $x + 3; }) // This operation is ignored.
+ *   ->unpack();
+ *
+ * Assert::assertEquals(6, $result);
+ * ```
  */
 class Until extends Monad
 {
@@ -19,7 +35,7 @@ class Until extends Monad
      * Apply a transformation to the monad.
      *
      * @param callable $transform
-     * @return Until|Something A transformed instance of the monad.
+     * @return Until|Something|Monad
      */
     public function bind(callable $transform)
     {

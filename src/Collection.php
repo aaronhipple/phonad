@@ -4,21 +4,22 @@ use InvalidArgumentException;
 
 /**
  * Collection permits the chaining of operations on a list of items.
+ * Bound functions are applied to each item and the results concatenated.
  *
- * Example usage:
- *
+ * Example:
  * ```php
- *   use Phonad\Collection;
- *   use PHPUnit\Framework\Assert;
+ * use Phonad\Collection;
+ * use PHPUnit\Framework\Assert;
  *
- *   $value = new Collection(1, 2, 3);
+ * $value = new Collection(1, 2, 3);
  *
- *   $result = $value
- *     ->bind(function ($x) { return $x - 1; })
- *     ->bind(function ($x) { return $x * 2; })
- *     ->unpack();
+ * $result = $value
+ *   ->bind(function ($x) { return $x - 1; })
+ *   ->bind(function ($x) { return $x * 2; })
+ *   ->bind(function ($x) { return [$x, $x + 1]; })
+ *   ->unpack();
  *
- *   Assert::assertEquals([0, 2, 4], $result);
+ * Assert::assertEquals([0, 1, 2, 3, 4, 5], $result);
  * ```
  */
 class Collection extends Monad
@@ -35,7 +36,7 @@ class Collection extends Monad
     /**
      * Collection constructor.
      *
-     * @param $value mixed The value to be contained. If not an array, an array will be constructed.
+     * @param $value mixed
      */
     public function __construct(...$items)
     {
@@ -46,7 +47,7 @@ class Collection extends Monad
      * Apply a transformation to each item of the monad.
      *
      * @param callable $transform
-     * @return Monad A transformed monad of the monad.
+     * @return Collection|Monad
      */
     public function bind(callable $transform)
     {
@@ -54,20 +55,4 @@ class Collection extends Monad
         return static::unit(...$results);
     }
 
-    /**
-     * concat joins an array of arrays into a single array.
-     *
-     * Concat handles a unit of [Nothing] as a special case, ignoring it.
-     *
-     * @param $list array An array of arrays.
-     * @return array A flattened array.
-     */
-    public static function concat($list)
-    {
-        return array_reduce($list, function ($carry, Monad $item) {
-            return ($item instanceof Nothing)
-                ? $carry
-                : array_merge($carry, $item->unpack());
-        }, []);
-    }
 }
