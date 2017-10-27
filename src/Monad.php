@@ -21,7 +21,7 @@ abstract class Monad
     /**
      * Monad constructor
      *
-     * @param $value mixed
+     * @param mixed $value The encapsulated value.
      */
     public function __construct($value)
     {
@@ -31,8 +31,9 @@ abstract class Monad
     /**
      * Calls to things that are private static methods pass through to retrieve a callback.
      *
-     * @param $name string The called method name.
-     * @param $arguments array An array of function arguments.
+     * @param string $name      The called method name.
+     * @param array  $arguments An array of function arguments.
+     *
      * @return Monad
      * @throws Phonad\Exceptions\MethodNotFoundException
      */
@@ -47,7 +48,8 @@ abstract class Monad
     /**
      * A factory method for monads.
      *
-     * @param $value mixed The value(s) being encapsulated.
+     * @param mixed ...$value The value(s) being encapsulated.
+     *
      * @return Monad
      */
     public static function unit(...$value)
@@ -64,7 +66,8 @@ abstract class Monad
     /**
      * Apply a transformation to the monad.
      *
-     * @param callable $transform
+     * @param callable $transform The transformation being bound.
+     *
      * @return Monad
      */
     abstract public function bind(callable $transform);
