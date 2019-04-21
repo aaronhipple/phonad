@@ -35,13 +35,13 @@ class Option extends Monad
      * Apply a transformation to the monad.
      *
      * @param callable $transform
-     * @return Option|Nothing|Monad
+     * @return Option|Nothing
      */
     public function bind(callable $transform)
     {
         $result = $transform($this->value);
-        return ($result instanceof Option)
-          ? $result
+        return (is_null($result))
+          ? Nothing::unit($result)
           : static::unit($result);
     }
 }

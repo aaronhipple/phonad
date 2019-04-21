@@ -35,14 +35,14 @@ class Until extends Monad
      * Apply a transformation to the monad.
      *
      * @param callable $transform
-     * @return Until|Something|Monad
+     * @return Until|Something
      */
     public function bind(callable $transform)
     {
         $result = $transform($this->value);
 
-        if ($result instanceof Nothing || is_null($result)) {
-            return new Until($this->value);
+        if (is_null($result)) {
+            return $this;
         }
         return Something::unit($result);
     }
